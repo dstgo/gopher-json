@@ -10,7 +10,7 @@ import (
 // Preload adds json to the given Lua state's package.preload table. After it
 // has been preloaded, it can be loaded using require:
 //
-//  local json = require("json")
+//	local json = require("json")
 func Preload(L *lua.LState) {
 	L.PreloadModule("json", Loader)
 }
@@ -99,7 +99,7 @@ func (j jsonValue) MarshalJSON() (data []byte, err error) {
 
 		switch key.Type() {
 		case lua.LTNil: // empty table
-			data = []byte(`[]`)
+			data = []byte(`{}`)
 		case lua.LTNumber:
 			arr := make([]jsonValue, 0, converted.Len())
 			expectedKey := lua.LNumber(1)
